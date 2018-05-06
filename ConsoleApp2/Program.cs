@@ -197,11 +197,6 @@ namespace ConsoleApp2
             }
             Console.WriteLine("Programm lõpetas töö");
         }
-
-        public void Check()
-        {
-
-        }
     }
     
     public class Note
