@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -9,6 +10,8 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
+            CheckAndLoad();
+
             bool State = true;
             bool Result = false;
             int Valik = 0;
@@ -191,8 +194,22 @@ namespace ConsoleApp2
             }
             Console.WriteLine("Programm lõpetas töö");
         }
+
+        static void CheckAndLoad()
+        {
+            List<Note> Notes = new List<Note>();
+            XmlSerializer Serializer = new XmlSerializer(typeof(List<Note>));
+
+            if (!(File.Exists("../../Notes.xml")))
+            {
+                using (var Writer = XmlWriter.Create("../../Notes.xml"))
+                {
+                    Serializer.Serialize(Writer, Notes);
+                }
+            }
+        }
     }
-    
+
     public class Note
     {
         public string Name { get; set; }
