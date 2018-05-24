@@ -6,14 +6,20 @@ using System.Xml.Serialization;
 
 namespace ConsoleApp2
 {
+    /// <summary>This class contains all methods program needs.</summary>
+    /// <remarks>None of the methods are asking input parameters.
+    /// Every menu option have own method.</remarks>
     class Program
     {
+        /// <summary>Program starts here.</summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             CheckAndLoad();
             MenuOptions();
         }
 
+        /// <summary>Checks, if "../../Notes.xml" doesn`t exist, then creates it.</summary>
         static void CheckAndLoad()
         {
             List<Note> Notes = new List<Note>();
@@ -28,6 +34,7 @@ namespace ConsoleApp2
             }
         }
 
+        /// <summary>Contains all menu choices (1-3).</summary>
         static void MenuOptions()
         {
             List<Note> Notes = new List<Note>();
@@ -62,6 +69,9 @@ namespace ConsoleApp2
             else if (Valik == 3) DeleteNote();
         }
 
+        /// <summary>Reading notes in and list them in console.
+        /// Gives choices of notes or gives "No notes" error, if notes doesn`t exist.
+        /// Shows selected note content</summary>
         static void ReadNotes()
         {
             List<Note> Notes = new List<Note>();
@@ -111,6 +121,9 @@ namespace ConsoleApp2
             ExitOrContinue();
         }
 
+        /// <summary>Reading notes in and serialize them.
+        /// Asks "Title" and "Content" to add new note in list.
+        /// Deserialize list and overwrite whole file.</summary>
         static void CreateNote()
         {
             List<Note> Notes = new List<Note>();
@@ -148,6 +161,9 @@ namespace ConsoleApp2
             MenuOptions();
         }
 
+        /// <summary>Reads notes in. Serialize them.
+        /// Asks what note to delete. Deletes note from list by index.
+        /// Deserialize list and overwrite whole file.</summary>
         static void DeleteNote()
         {
             List<Note> Notes = new List<Note>();
@@ -201,6 +217,9 @@ namespace ConsoleApp2
             MenuOptions();
         }
 
+        /// <summary>Shows "Want exit on continue with program using?" choice.
+        /// If want to continue sends MenuOption() class.
+        /// If want to exit gives exit code to console and gives message about it.</summary>
         static void ExitOrContinue()
         {
             bool Result = false;
@@ -223,6 +242,7 @@ namespace ConsoleApp2
         }
     }
 
+    /// <summary>Class contains "Name" and "Content" parameters for list.</summary>
     public class Note
     {
         public string Name { get; set; }
